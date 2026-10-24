@@ -125,15 +125,6 @@ Small project. Real lessons. Fewer reasons to fear `useEffect`. 😅
 
 ---
 
-## 🗺️ What's next?
-
-- [ ] Add fullscreen mode.
-- [ ] Add a mute/unmute control.
-- [ ] Improve accessibility and keyboard support.
-- [ ] Add more timer presets.
-
----
-
 ## 👨‍💻 Author
 
 **Ashish Jha**
