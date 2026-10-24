@@ -1,0 +1,477 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ========================================
+   1. THEME
+======================================== */
+
+:root {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #fff3f5;
+  background: #090709;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg: #090709;
+  --surface: #171014;
+  --surface-hover: #241017;
+  --border: rgba(255, 65, 91, 0.17);
+  --muted: #a9949b;
+  --accent: #ff294f;
+  --accent-light: #ff7186;
+  --text: #fff3f5;
+}
+
+/* ========================================
+   2. GLOBAL STYLES
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255, 25, 65, 0.14),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 50% 70%,
+      rgba(120, 0, 25, 0.07),
+      transparent 55%
+    ),
+    var(--bg);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(255, 41, 79, 0.4);
+}
+
+/* ========================================
+   3. MAIN LAYOUT
+======================================== */
+
+#root > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 58px 20px 48px;
+}
+
+/* ========================================
+   4. HEADER
+======================================== */
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -1.8px;
+  line-height: 1.2;
+  text-shadow: 0 0 35px rgba(255, 41, 79, 0.12);
+}
+
+/* ========================================
+   5. TABS
+======================================== */
+
+.tab {
+  padding: 11px 23px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.tab + .tab {
+  margin-left: 5px;
+}
+
+.tab:hover {
+  background: rgba(255, 41, 79, 0.07);
+  color: var(--text);
+}
+
+.tab.active {
+  border-color: rgba(255, 65, 91, 0.25);
+  background: rgba(255, 41, 79, 0.13);
+  color: var(--accent-light);
+  box-shadow:
+    inset 0 0 18px rgba(255, 41, 79, 0.04),
+    0 0 22px rgba(255, 41, 79, 0.07);
+}
+
+.tab.active:hover {
+  background: rgba(255, 41, 79, 0.19);
+}
+
+/* ========================================
+   6. PANEL LAYOUT
+======================================== */
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 460px;
+}
+
+/* ========================================
+   7. TIMER INPUT
+======================================== */
+
+.timer-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.timer-duration input {
+  width: 110px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  background: #120c10;
+  color: var(--text);
+  font-size: 15px;
+  text-align: center;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.timer-duration input:focus {
+  border-color: rgba(255, 65, 91, 0.75);
+  box-shadow: 0 0 0 3px rgba(255, 41, 79, 0.1);
+}
+
+.timer-duration input:disabled {
+  opacity: 0.55;
+}
+
+/* ========================================
+   8. TIMER AND STOPWATCH RINGS
+======================================== */
+
+.timer-ring,
+.stopwatch-ring {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  border: 1px solid rgba(255, 55, 85, 0.75);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 35, 75, 0.085),
+      transparent 68%
+    ),
+    rgba(17, 10, 14, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(255, 40, 75, 0.09),
+    0 0 18px rgba(255, 35, 70, 0.1),
+    0 0 45px rgba(255, 20, 55, 0.08),
+    inset 0 0 28px rgba(255, 35, 70, 0.035);
+  transition:
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* The SVG draws the timer circle itself. */
+
+.timer-ring {
+  border-color: transparent;
+}
+
+.timer-ring:hover,
+.stopwatch-ring:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 40, 75, 0.14),
+    0 0 24px rgba(255, 35, 70, 0.14),
+    0 0 55px rgba(255, 20, 55, 0.1),
+    inset 0 0 32px rgba(255, 35, 70, 0.05);
+}
+
+.timer-ring p,
+.stopwatch-ring p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(34px, 5vw, 43px);
+  font-weight: 600;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 22px rgba(255, 85, 110, 0.12);
+}
+
+/* ========================================
+   9. TIMER SVG PROGRESS
+======================================== */
+
+.timer-progress-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.timer-ring .timer-progress-track,
+.timer-ring .timer-progress-value {
+  fill: none;
+  stroke-width: 3.5;
+}
+
+.timer-ring .timer-progress-track {
+  stroke: #382026;
+}
+
+.timer-ring .timer-progress-value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 3px rgba(255, 41, 79, 0.65));
+  transition: stroke-dashoffset 100ms linear;
+}
+
+/* ========================================
+   10. STOPWATCH MOVING DOT
+======================================== */
+
+/*
+  Important:
+  The orbit fills the ring.
+  React rotates this orbit.
+  The dot stays at the top of the orbit.
+*/
+
+.stopwatch-ring {
+  overflow: visible;
+}
+
+.stopwatch-orbit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.stopwatch-dot {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  transform: none;
+  border: 2px solid #ffb3bf;
+  border-radius: 50%;
+  background: #ff294f;
+  box-shadow:
+    0 0 6px rgba(255, 41, 79, 0.95),
+    0 0 15px rgba(255, 41, 79, 0.85),
+    0 0 28px rgba(255, 41, 79, 0.4);
+}
+
+/* ========================================
+   11. BUTTON GROUPS
+======================================== */
+
+section > div:not(.timer-ring):not(.stopwatch-ring) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+section button {
+  min-height: 40px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  color: #f8e9ed;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    opacity 160ms ease;
+}
+
+section button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(255, 65, 91, 0.4);
+  background: var(--surface-hover);
+  box-shadow: 0 0 18px rgba(255, 41, 79, 0.08);
+}
+
+section button:active:not(:disabled) {
+  transform: translateY(0) scale(0.97);
+}
+
+section button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+section button:focus-visible,
+.tab:focus-visible {
+  outline: 2px solid var(--accent-light);
+  outline-offset: 4px;
+}
+
+/* Only the Timer's preset buttons get preset styling. */
+
+.timer-duration ~ div:last-child button {
+  min-width: 74px;
+  background: transparent;
+  color: #b69da4;
+}
+
+.timer-duration ~ div:last-child button:hover:not(:disabled) {
+  background: rgba(255, 41, 79, 0.09);
+  border-color: rgba(255, 65, 91, 0.3);
+  color: var(--accent-light);
+}
+
+/* ========================================
+   12. SUBTLE ENTRY ANIMATION
+======================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .timer-ring,
+  .stopwatch-ring {
+    animation: ring-appear 450ms ease-out both;
+  }
+
+  @keyframes ring-appear {
+    from {
+      opacity: 0.5;
+      transform: scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* ========================================
+   13. MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+  #root > div {
+    gap: 26px;
+    padding: 42px 16px 32px;
+  }
+
+  header h1 {
+    letter-spacing: -1.2px;
+  }
+
+  .timer-ring,
+  .stopwatch-ring {
+    width: 215px;
+    height: 215px;
+  }
+
+  section {
+    gap: 22px;
+  }
+
+  section button {
+    padding: 10px 15px;
+  }
+}
+
+/* ========================================
+   14. REDUCED MOTION ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
