@@ -2,7 +2,7 @@
 
 **Time is ticking. At least now it looks good.**
 
-A minimal, dark-themed Timer & Stopwatch built with React, TypeScript, and Vite. Designed with a glowing hot-red aesthetic, smooth circular indicators, and a focused interface that keeps things simple.
+A minimal, dark-themed Timer & Stopwatch built with React, TypeScript, and Vite. Featuring a glowing hot-red aesthetic, circular progress indicators, smooth interactions, and a distraction-free interface.
 
 <p align="center">
   <a href="https://timer-stopwatch-gamma.vercel.app/">
@@ -17,7 +17,7 @@ A minimal, dark-themed Timer & Stopwatch built with React, TypeScript, and Vite.
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-149ECA?style=flat-square&logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Vite-Fast-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Vite-Build-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Deployed on Vercel" />
 </p>
 
@@ -26,38 +26,38 @@ A minimal, dark-themed Timer & Stopwatch built with React, TypeScript, and Vite.
 ## Preview
 
 <p align="center">
-  <a href="https://timer-stopwatch-gamma.vercel.app/">
-    <img src="screenshots/timer-stopwatch-preview.png" alt="Timer and Stopwatch application preview" width="100%" />
-  </a>
+  <img src="src/assets/timer.png" alt="Timer interface featuring a glowing red countdown ring" width="48%" />
+  &nbsp;
+  <img src="src/assets/stopwatch.png" alt="Stopwatch interface featuring a circular time indicator" width="48%" />
 </p>
 
 <p align="center">
-  <sub>A focused workspace for tracking time, one second at a time.</sub>
+  <sub>Two tools. One focused interface.</sub>
 </p>
 
 ## Features
 
-### Timer
+### ⏱️ Timer
 
 - **Custom duration** — Set your preferred countdown time.
 - **Quick adjustments** — Add 30 seconds, 1 minute, or 5 minutes.
-- **Playback controls** — Start, pause, and reset the countdown.
-- **Circular progress** — Follow the remaining time visually.
+- **Playback controls** — Start, pause, and reset the timer.
+- **Circular progress** — Track the remaining time visually.
 - **Audible alarm** — Get notified when the countdown reaches zero.
-- **Live tab title** — See the remaining time in your browser tab.
+- **Live browser title** — See the remaining time directly in your browser tab.
 
-### Stopwatch
+### ⚡ Stopwatch
 
 - **Centisecond precision** — Track elapsed time down to hundredths of a second.
 - **Playback controls** — Start, pause, and reset with ease.
 - **Animated indicator** — Follow the glowing indicator around the circular ring.
 
-### Interface
+### 🎨 Interface
 
 - Deep-black background with glowing red accents.
-- Minimal controls and focused typography.
+- Minimal controls and clean typography.
 - Responsive layout for different screen sizes.
-- Smooth visual feedback and circular time indicators.
+- Smooth visual feedback and circular indicators.
 - Dedicated Timer and Stopwatch views.
 
 ## Tech Stack
@@ -129,9 +129,6 @@ pnpm preview
 ```text
 timer-stopwatch/
 ├── public/
-├── screenshots/
-│   ├── timer-stopwatch-preview.png
-│   └── workspace-view.png
 ├── src/
 │   ├── assets/
 │   │   ├── stopwatch.png
@@ -151,44 +148,34 @@ timer-stopwatch/
 ├── index.html
 ├── package.json
 ├── pnpm-lock.yaml
+├── README.md
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
-├── vite.config.ts
-└── README.md
+└── vite.config.ts
 ```
 
-## Development Highlights
+## What I Learned
 
-Building this project helped me explore:
+Building this project helped me put React fundamentals into practice:
 
 - Managing component state with React Hooks.
 - Using `useEffect` for timer intervals and effect cleanup.
 - Passing data and event handlers through component props.
 - Separating application logic from UI presentation.
 - Using TypeScript with React components.
-- Creating circular indicators with CSS and SVG.
+- Building circular indicators with CSS and SVG.
 - Working with browser audio through the Web Audio API.
-- Building and deploying a frontend application with GitHub and Vercel.
+- Creating a responsive interface with custom CSS.
+- Using Git, GitHub, and Vercel to publish a project.
 
 ## Deployment
 
 The application is deployed on **Vercel** and connected to its GitHub repository.
 
-**Live application:**
-https://timer-stopwatch-gamma.vercel.app/
+**Live application:** [timer-stopwatch-gamma.vercel.app](https://timer-stopwatch-gamma.vercel.app/)
 
 Changes pushed to the configured production branch trigger a new deployment automatically.
-
-## Screenshots
-
-<p align="center">
-  <img src="screenshots/workspace-view.png" alt="Timer and Stopwatch project in Visual Studio Code" width="100%" />
-</p>
-
-<p align="center">
-  <sub>The development workspace behind the project.</sub>
-</p>
 
 ## Author
 
