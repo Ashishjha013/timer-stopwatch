@@ -1,140 +1,156 @@
-# 🔴 Timer & Stopwatch
+<div align="center">
 
-**Time is ticking. At least now it looks good.**
+# Timer & Stopwatch
 
-A minimal, dark-themed Timer & Stopwatch built with React, TypeScript, and Vite — with a glowing hot-red aesthetic, smooth visuals, and no unnecessary distractions.
+**A focused timekeeping app with a minimal interface and a vivid red glow.**
+
+Built with React, TypeScript, and Vite.
+
+[**Live Demo ↗**](https://timer-stopwatch-gamma.vercel.app/) · [Source Code](https://github.com/Ashishjha013/timer-stopwatch)
+
+![React](https://img.shields.io/badge/React-19-149ECA?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Deployment](https://img.shields.io/badge/Deployed-on%20Vercel-black?style=flat-square&logo=vercel&logoColor=white)
+
+</div>
+
+---
+
+## Preview
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React-19-20232a?style=flat-square&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Vite-Fast-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/Theme-Hot%20Red-ff2941?style=flat-square" alt="Hot red theme" />
+  <a href="https://timer-stopwatch-gamma.vercel.app/">
+    <img src="screenshots/timer-stopwatch-preview.png" alt="Timer and Stopwatch app preview" width="720" />
+  </a>
 </p>
 
----
+A small project built around one idea: make timing something feel simple, clear, and satisfying.
 
-## ✨ The experience
+## Under the Hood
 
-Two tools. One clean interface. Zero excuses for being late.
+<p align="center">
+  <img src="screenshots/workspace-view.png" alt="Development workspace showing the Timer & Stopwatch component structure and styling" width="900" />
+</p>
 
-### ⏱️ Timer
+The interface is organized into focused React components for the timer, stopwatch, header, and tab controls. This keeps the UI easier to understand and gives each part a clear responsibility.
 
-- Set your own starting time.
-- Start, pause, and reset whenever you want.
-- Add **30 seconds, 1 minute, or 5 minutes** on the fly.
-- Watch the circular progress indicator count down.
-- Get an audible alarm when time runs out.
-- See the remaining time right in your browser tab.
+## Features
 
-### ⚡ Stopwatch
+| Timer                                   | Stopwatch                          |
+| --------------------------------------- | ---------------------------------- |
+| Set a custom countdown duration         | Track elapsed time to centiseconds |
+| Start, pause, and reset                 | Start, pause, and reset            |
+| Add 30 seconds, 1 minute, or 5 minutes  | Follow the animated ring indicator |
+| Circular countdown progress             | Live elapsed-time display          |
+| Audible alarm when time runs out        | —                                  |
+| Remaining time shown in the browser tab | —                                  |
 
-- Track elapsed time down to centiseconds.
-- Start, pause, and reset with ease.
-- Follow the glowing red indicator around the circular ring.
+**Interface:** Dark theme, hot-red accents, subtle glow, responsive layout, and focused controls.
 
-### 🎨 The look
+## Tech Stack
 
-- Deep-black background with a hot-red glow.
-- Minimal controls and clean typography.
-- A focused interface without visual clutter.
-- Responsive styling for different screen sizes.
+- **React** — component-based UI and state management
+- **TypeScript** — safer, more maintainable code
+- **Vite** — development server and production bundling
+- **CSS** — responsive styling, animations, and visual effects
+- **Web Audio API** — timer alarm
 
----
+## Getting Started
 
-## 🛠️ Built with
+### Requirements
 
-| Technology    | Purpose                                            |
-| ------------- | -------------------------------------------------- |
-| React         | UI and component-based architecture                |
-| TypeScript    | Type safety                                        |
-| Vite          | Fast development and builds                        |
-| CSS           | Custom dark theme, glowing accents, and animations |
-| Web Audio API | Timer alarm                                        |
+- [Node.js](https://nodejs.org/)
+- [pnpm](https://pnpm.io/)
+- [Git](https://git-scm.com/)
 
----
-
-## 🚀 Run it locally
-
-You'll need [Node.js](https://nodejs.org/) and Git installed.
-
-**1. Clone the repository**
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Ashishjha013/timer-stopwatch.git
-```
-
-**2. Enter the project**
-
-```bash
 cd timer-stopwatch
 ```
 
-**3. Install dependencies**
+### 2. Install dependencies
 
 ```bash
 pnpm install
 ```
 
-**4. Start the development server**
+### 3. Start the development server
 
 ```bash
 pnpm dev
 ```
 
-Open the local URL shown in your terminal and let the countdown begin. 🔥
+Open the local URL printed in your terminal.
 
----
+### 4. Create a production build
 
-## 📂 Project structure
+```bash
+pnpm build
+```
+
+To preview the production build locally:
+
+```bash
+pnpm preview
+```
+
+## Project Structure
 
 ```text
 timer-stopwatch/
 ├── public/
 ├── src/
+│   ├── assets/
+│   │   ├── stopwatch.png
+│   │   └── timer.png
 │   ├── components/
 │   │   ├── Header.tsx
-│   │   ├── Tabs.tsx
+│   │   ├── StopwatchPanel.tsx
 │   │   ├── TabButton.tsx
-│   │   ├── TimerPanel.tsx
-│   │   └── StopwatchPanel.tsx
+│   │   ├── Tabs.tsx
+│   │   └── TimerPanel.tsx
+│   ├── App.css
 │   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
+│   ├── index.css
+│   └── main.tsx
+├── index.html
 ├── package.json
+├── pnpm-lock.yaml
 ├── tsconfig.json
 └── vite.config.ts
 ```
 
-_Your actual file structure may differ as the project evolves._
+## What I Practised
+
+This project helped me put React concepts into practice:
+
+- Managing UI state with React Hooks
+- Using effects and cleanup for interval-based behavior
+- Passing data and event handlers through props
+- Keeping timer behavior organized across components
+- Using TypeScript in a React application
+- Building responsive UI with custom CSS
+- Shipping updates through GitHub and Vercel
+
+## Deployment
+
+The app is hosted on **Vercel** and connected to GitHub. Pushes to the production branch can trigger a new deployment automatically.
+
+**[Open the live app →](https://timer-stopwatch-gamma.vercel.app/)**
+
+## Author
+
+**Ashish Jha** · [GitHub](https://github.com/Ashishjha013)
+
+Learning by building practical projects, understanding the details, and improving one iteration at a time.
 
 ---
 
-## 🧠 What I learned
+<div align="center">
 
-This project is part of my journey toward becoming a better frontend and full-stack developer.
+Made with React, TypeScript, and attention to detail.
 
-- Managing component state with React hooks.
-- Using effects and cleanup for timer intervals.
-- Passing props between components.
-- Keeping timer logic separate from UI presentation.
-- Working with TypeScript in React.
-- Building a polished interface with custom CSS.
-- Using Git and GitHub to version and publish a project.
-
-Small project. Real lessons. Fewer reasons to fear `useEffect`. 😅
-
----
-
-## 👨‍💻 Author
-
-**Ashish Jha**
-
-Learning by building, breaking things, fixing them, and occasionally wondering why the CSS is doing that.
-
-[GitHub Profile](https://github.com/Ashishjha013) · [Project Repository](https://github.com/Ashishjha013/timer-stopwatch)
-
----
-
-<p align="center">
-  <sub>Built with React, TypeScript, and a suspicious amount of CSS. ❤️‍🔥</sub>
-</p>
+</div>
