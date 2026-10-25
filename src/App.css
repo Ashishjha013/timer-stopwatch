@@ -1,139 +1,148 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+/* =========================================
+   TIMER & STOPWATCH — APP DESIGN
+   Midnight • Coral • Violet
+   ========================================= */
 
-/* ========================================
-   1. THEME
-======================================== */
-
-:root {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  color: #fff3f5;
-  background: #090709;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --bg: #090709;
-  --surface: #171014;
-  --surface-hover: #241017;
-  --border: rgba(255, 65, 91, 0.17);
-  --muted: #a9949b;
-  --accent: #ff294f;
-  --accent-light: #ff7186;
-  --text: #fff3f5;
-}
-
-/* ========================================
-   2. GLOBAL STYLES
-======================================== */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 320px;
-  min-height: 100%;
-  background: var(--bg);
-}
+/* =========================================
+   1. APP BACKGROUND
+   ========================================= */
 
 body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
   background:
     radial-gradient(
-      ellipse at 50% 0%,
-      rgba(255, 25, 65, 0.14),
-      transparent 48%
+      ellipse at 50% -15%,
+      rgba(255, 100, 124, 0.14),
+      transparent 54%
     ),
     radial-gradient(
-      ellipse at 50% 70%,
-      rgba(120, 0, 25, 0.07),
-      transparent 55%
+      ellipse at 95% 75%,
+      rgba(167, 139, 250, 0.07),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(255, 100, 124, 0.045),
+      transparent 35%
     ),
     var(--bg);
 }
 
+/* Subtle atmospheric grid */
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+  opacity: 0.35;
+
+  pointer-events: none;
+  content: "";
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+/* Keep the app above the decorative background */
+
 #root {
-  width: 100%;
-  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
-button,
-input {
-  font: inherit;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-::selection {
-  color: #fff;
-  background: rgba(255, 41, 79, 0.4);
-}
-
-/* ========================================
-   3. MAIN LAYOUT
-======================================== */
+/* =========================================
+   2. MAIN LAYOUT
+   ========================================= */
 
 #root > div {
-  min-height: 100vh;
   display: flex;
+  min-height: 100vh;
+  width: 100%;
+
   flex-direction: column;
   align-items: center;
+
   gap: 30px;
-  padding: 58px 20px 48px;
+
+  padding: clamp(34px, 7vh, 68px) 20px 48px;
 }
 
-/* ========================================
-   4. HEADER
-======================================== */
+/* =========================================
+   3. HEADER
+   ========================================= */
 
 header {
+  position: relative;
   text-align: center;
 }
 
 header h1 {
   margin: 0;
+
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.5vw, 43px);
+  font-weight: 600;
+
+  line-height: 1.15;
+  letter-spacing: -2px;
+
   color: var(--text);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  letter-spacing: -1.8px;
-  line-height: 1.2;
-  text-shadow: 0 0 35px rgba(255, 41, 79, 0.12);
+
+  background: linear-gradient(120deg, #ffffff 15%, #f7dce4 58%, #ff91a5 100%);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ========================================
-   5. TABS
-======================================== */
+/* Works when the header has a subtitle */
+
+header p {
+  max-width: 360px;
+  margin: 12px auto 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* =========================================
+   4. TABS
+   ========================================= */
 
 .tab {
-  padding: 11px 23px;
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 43px;
+  padding: 10px 23px;
+
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
+
   background: transparent;
   color: var(--muted);
+
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+
   cursor: pointer;
+
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--transition-fast);
 }
 
 .tab + .tab {
@@ -141,145 +150,307 @@ header h1 {
 }
 
 .tab:hover {
-  background: rgba(255, 41, 79, 0.07);
   color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.tab:active {
+  transform: scale(0.97);
 }
 
 .tab.active {
-  border-color: rgba(255, 65, 91, 0.25);
-  background: rgba(255, 41, 79, 0.13);
-  color: var(--accent-light);
+  border-color: rgba(255, 100, 124, 0.2);
+
+  color: #ff9bab;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 100, 124, 0.14),
+    rgba(255, 100, 124, 0.06)
+  );
+
   box-shadow:
-    inset 0 0 18px rgba(255, 41, 79, 0.04),
-    0 0 22px rgba(255, 41, 79, 0.07);
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 4px 20px rgba(255, 100, 124, 0.055);
 }
 
 .tab.active:hover {
-  background: rgba(255, 41, 79, 0.19);
+  border-color: rgba(255, 100, 124, 0.34);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 100, 124, 0.19),
+    rgba(255, 100, 124, 0.08)
+  );
 }
 
-/* ========================================
-   6. PANEL LAYOUT
-======================================== */
+/* =========================================
+   5. MAIN TIMER / STOPWATCH PANEL
+   ========================================= */
 
 section {
+  position: relative;
+  isolation: isolate;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+
+  gap: 26px;
+
   width: 100%;
   max-width: 460px;
+
+  padding: 30px 22px 26px;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  background: linear-gradient(
+    145deg,
+    rgba(27, 27, 39, 0.87),
+    rgba(17, 17, 25, 0.91)
+  );
+
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
 }
 
-/* ========================================
-   7. TIMER INPUT
-======================================== */
+/* Soft highlight at the top of the card */
+
+section::before {
+  position: absolute;
+  top: 0;
+  left: 18%;
+
+  width: 64%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.16),
+    transparent
+  );
+
+  pointer-events: none;
+  content: "";
+}
+
+/* Preserve hidden panels when switching tabs */
+
+[hidden] {
+  display: none !important;
+}
+
+/* =========================================
+   6. TIMER DURATION INPUT
+   ========================================= */
 
 .timer-duration {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+
+  gap: 9px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+/* Also style a label if the component uses one */
+
+.timer-duration label {
   color: var(--muted);
   font-size: 12px;
-  letter-spacing: 0.3px;
+  font-weight: 500;
 }
 
 .timer-duration input {
-  width: 110px;
+  width: 116px;
+  min-height: 43px;
+
   padding: 9px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 13px;
+
   outline: none;
-  background: #120c10;
+
+  background: rgba(5, 5, 10, 0.34);
   color: var(--text);
-  font-size: 15px;
+
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+
   text-align: center;
+  font-variant-numeric: tabular-nums;
+
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease;
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.timer-duration input:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .timer-duration input:focus {
-  border-color: rgba(255, 65, 91, 0.75);
-  box-shadow: 0 0 0 3px rgba(255, 41, 79, 0.1);
+  border-color: rgba(255, 100, 124, 0.7);
+
+  background: rgba(255, 100, 124, 0.035);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 100, 124, 0.09),
+    0 0 24px rgba(255, 100, 124, 0.045);
 }
 
 .timer-duration input:disabled {
-  opacity: 0.55;
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
-/* ========================================
-   8. TIMER AND STOPWATCH RINGS
-======================================== */
+/* =========================================
+   7. CIRCULAR TIMER AND STOPWATCH
+   ========================================= */
 
 .timer-ring,
 .stopwatch-ring {
   position: relative;
   isolation: isolate;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
-  height: 240px;
-  border: 1px solid rgba(255, 55, 85, 0.75);
+
+  flex: 0 0 auto;
+
+  width: clamp(210px, 55vw, 250px);
+  aspect-ratio: 1;
+  height: auto;
+
   border-radius: 50%;
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(255, 35, 75, 0.085),
-      transparent 68%
-    ),
-    rgba(17, 10, 14, 0.9);
-  box-shadow:
-    0 0 0 1px rgba(255, 40, 75, 0.09),
-    0 0 18px rgba(255, 35, 70, 0.1),
-    0 0 45px rgba(255, 20, 55, 0.08),
-    inset 0 0 28px rgba(255, 35, 70, 0.035);
+
   transition:
-    border-color 250ms ease,
-    box-shadow 250ms ease;
+    box-shadow 300ms ease,
+    border-color 300ms ease;
 }
 
-/* The SVG draws the timer circle itself. */
+/* =========================================
+   TIMER RING
+   ========================================= */
 
 .timer-ring {
-  border-color: transparent;
+  border: 1px solid transparent;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255, 100, 124, 0.075),
+      transparent 63%
+    ),
+    rgba(10, 10, 16, 0.35);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 100, 124, 0.045),
+    inset 0 0 40px rgba(255, 100, 124, 0.025);
+}
+
+/* =========================================
+   STOPWATCH RING
+   ========================================= */
+
+.stopwatch-ring {
+  overflow: visible;
+
+  border: 1px solid rgba(255, 100, 124, 0.46);
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 100, 124, 0.085),
+      transparent 62%
+    ),
+    radial-gradient(
+      circle at 50% 110%,
+      rgba(167, 139, 250, 0.07),
+      transparent 55%
+    ),
+    rgba(10, 10, 16, 0.55);
+
+  box-shadow:
+    0 0 0 5px rgba(255, 100, 124, 0.025),
+    0 0 30px rgba(255, 100, 124, 0.075),
+    inset 0 0 35px rgba(255, 100, 124, 0.035);
+}
+
+/* Delicate inner circle */
+
+.stopwatch-ring::before {
+  position: absolute;
+  inset: 11px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.075);
+  border-radius: 50%;
+
+  pointer-events: none;
+  content: "";
 }
 
 .timer-ring:hover,
 .stopwatch-ring:hover {
   box-shadow:
-    0 0 0 1px rgba(255, 40, 75, 0.14),
-    0 0 24px rgba(255, 35, 70, 0.14),
-    0 0 55px rgba(255, 20, 55, 0.1),
-    inset 0 0 32px rgba(255, 35, 70, 0.05);
+    0 0 0 5px rgba(255, 100, 124, 0.035),
+    0 0 38px rgba(255, 100, 124, 0.11),
+    inset 0 0 38px rgba(255, 100, 124, 0.045);
 }
+
+/* Timer / stopwatch number */
 
 .timer-ring p,
 .stopwatch-ring p {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+
   margin: 0;
+
   color: var(--text);
-  font-size: clamp(34px, 5vw, 43px);
-  font-weight: 600;
-  letter-spacing: -2px;
+
+  font-family: var(--font-display);
+  font-size: clamp(35px, 6vw, 46px);
+  font-weight: 500;
+
+  letter-spacing: -2.2px;
+  line-height: 1;
+
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 22px rgba(255, 85, 110, 0.12);
+
+  text-shadow: 0 0 26px rgba(255, 255, 255, 0.055);
 }
 
-/* ========================================
-   9. TIMER SVG PROGRESS
-======================================== */
+/* =========================================
+   8. TIMER SVG PROGRESS RING
+   ========================================= */
 
 .timer-progress-svg {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
+
   width: 100%;
   height: 100%;
+
   overflow: visible;
+
   transform: rotate(-90deg);
   pointer-events: none;
 }
@@ -287,108 +458,152 @@ section {
 .timer-ring .timer-progress-track,
 .timer-ring .timer-progress-value {
   fill: none;
-  stroke-width: 3.5;
+  stroke-width: 3.2;
 }
 
 .timer-ring .timer-progress-track {
-  stroke: #382026;
+  stroke: rgba(255, 255, 255, 0.075);
 }
 
 .timer-ring .timer-progress-value {
   stroke: var(--accent);
   stroke-linecap: round;
-  filter: drop-shadow(0 0 3px rgba(255, 41, 79, 0.65));
+
+  filter: drop-shadow(0 0 4px rgba(255, 100, 124, 0.65));
+
   transition: stroke-dashoffset 100ms linear;
 }
 
-/* ========================================
-   10. STOPWATCH MOVING DOT
-======================================== */
-
-/*
-  Important:
-  The orbit fills the ring.
-  React rotates this orbit.
-  The dot stays at the top of the orbit.
-*/
-
-.stopwatch-ring {
-  overflow: visible;
-}
+/* =========================================
+   9. STOPWATCH MOVING DOT
+   ========================================= */
 
 .stopwatch-orbit {
   position: absolute;
   inset: 0;
+  z-index: 2;
+
   width: 100%;
   height: 100%;
+
   border-radius: 50%;
   transform-origin: center center;
+
   pointer-events: none;
-  z-index: 2;
 }
 
 .stopwatch-dot {
   position: absolute;
   top: -6px;
   left: 50%;
+
   width: 12px;
   height: 12px;
+
   margin-left: -6px;
+
   transform: none;
-  border: 2px solid #ffb3bf;
+
+  border: 2px solid #ffe1e7;
   border-radius: 50%;
-  background: #ff294f;
+
+  background: var(--accent);
+
   box-shadow:
-    0 0 6px rgba(255, 41, 79, 0.95),
-    0 0 15px rgba(255, 41, 79, 0.85),
-    0 0 28px rgba(255, 41, 79, 0.4);
+    0 0 7px rgba(255, 100, 124, 0.95),
+    0 0 16px rgba(255, 100, 124, 0.7),
+    0 0 28px rgba(255, 100, 124, 0.25);
 }
 
-/* ========================================
-   11. BUTTON GROUPS
-======================================== */
+/* =========================================
+   10. BUTTON GROUP LAYOUT
+   ========================================= */
 
-section > div:not(.timer-ring):not(.stopwatch-ring) {
+/*
+  Style only direct child containers that contain
+  buttons.
+
+  This deliberately avoids applying row layout to
+  .timer-duration, so its label and input remain
+  vertically aligned.
+*/
+
+section > div:has(> button) {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
   flex-wrap: wrap;
   gap: 9px;
+
+  width: 100%;
 }
 
+/* =========================================
+   11. BUTTONS
+   ========================================= */
+
 section button {
-  min-height: 40px;
-  padding: 10px 18px;
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  background: var(--surface);
-  color: #f8e9ed;
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+  padding: 10px 17px;
+
+  border: 1px solid var(--border-strong);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-secondary);
+
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.05px;
+
+  white-space: nowrap;
   cursor: pointer;
+
   transition:
-    transform 160ms ease,
-    background 160ms ease,
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    opacity 160ms ease;
+    transform var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity var(--transition-fast);
 }
+
+/* Hover: a little personality, not a circus */
 
 section button:hover:not(:disabled) {
   transform: translateY(-2px);
-  border-color: rgba(255, 65, 91, 0.4);
-  background: var(--surface-hover);
-  box-shadow: 0 0 18px rgba(255, 41, 79, 0.08);
+
+  border-color: rgba(255, 100, 124, 0.32);
+
+  background: rgba(255, 100, 124, 0.075);
+  color: #fff0f3;
+
+  box-shadow: 0 5px 18px rgba(255, 100, 124, 0.055);
 }
+
+/* Press feedback */
 
 section button:active:not(:disabled) {
   transform: translateY(0) scale(0.97);
+  box-shadow: none;
 }
 
+/* Disabled buttons */
+
 section button:disabled {
-  opacity: 0.38;
+  opacity: 0.36;
   cursor: not-allowed;
+  box-shadow: none;
 }
+
+/* Keyboard navigation */
 
 section button:focus-visible,
 .tab:focus-visible {
@@ -396,34 +611,99 @@ section button:focus-visible,
   outline-offset: 4px;
 }
 
-/* Only the Timer's preset buttons get preset styling. */
+/*
+  Optional primary-button styling.
+
+  These work automatically if you later add
+  className="primary" to your Start button.
+*/
+
+section button.primary,
+section button[data-variant="primary"] {
+  border-color: transparent;
+
+  background: linear-gradient(135deg, #ff7188, #ff4969);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 18px rgba(255, 73, 105, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.19);
+}
+
+section button.primary:hover:not(:disabled),
+section button[data-variant="primary"]:hover:not(:disabled) {
+  border-color: transparent;
+
+  background: linear-gradient(135deg, #ff8497, #ff5c79);
+
+  box-shadow: 0 8px 24px rgba(255, 73, 105, 0.26);
+}
+
+/* =========================================
+   12. TIMER QUICK-ADD BUTTONS
+   ========================================= */
+
+/*
+  Keep the +0:30, +1:00 and +5:00 presets
+  quieter than the main controls.
+*/
 
 .timer-duration ~ div:last-child button {
-  min-width: 74px;
+  min-width: 76px;
+  min-height: 37px;
+
+  padding: 8px 13px;
+
+  border-color: rgba(255, 255, 255, 0.055);
+  border-radius: var(--radius-full);
+
   background: transparent;
-  color: #b69da4;
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .timer-duration ~ div:last-child button:hover:not(:disabled) {
-  background: rgba(255, 41, 79, 0.09);
-  border-color: rgba(255, 65, 91, 0.3);
+  border-color: rgba(255, 100, 124, 0.25);
+
+  background: rgba(255, 100, 124, 0.08);
   color: var(--accent-light);
+
+  box-shadow: none;
 }
 
-/* ========================================
-   12. SUBTLE ENTRY ANIMATION
-======================================== */
+/* =========================================
+   13. SUBTLE ENTRY ANIMATION
+   ========================================= */
 
 @media (prefers-reduced-motion: no-preference) {
+  header h1 {
+    animation: title-appear 550ms ease-out both;
+  }
+
   .timer-ring,
   .stopwatch-ring {
-    animation: ring-appear 450ms ease-out both;
+    animation: ring-appear 480ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes title-appear {
+    from {
+      opacity: 0;
+      transform: translateY(7px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes ring-appear {
     from {
-      opacity: 0.5;
-      transform: scale(0.97);
+      opacity: 0;
+      transform: scale(0.96);
     }
 
     to {
@@ -433,45 +713,106 @@ section button:focus-visible,
   }
 }
 
-/* ========================================
-   13. MOBILE
-======================================== */
+/* =========================================
+   14. TABLET
+   ========================================= */
+
+@media (max-width: 768px) {
+  #root > div {
+    gap: 26px;
+  }
+
+  section {
+    max-width: 440px;
+  }
+}
+
+/* =========================================
+   15. MOBILE
+   ========================================= */
 
 @media (max-width: 480px) {
   #root > div {
-    gap: 26px;
-    padding: 42px 16px 32px;
+    gap: 23px;
+
+    padding: 38px 16px 28px;
   }
 
   header h1 {
-    letter-spacing: -1.2px;
+    font-size: clamp(28px, 8vw, 36px);
+    letter-spacing: -1.5px;
+  }
+
+  section {
+    gap: 23px;
+
+    padding: 25px 15px 21px;
+
+    border-radius: 24px;
   }
 
   .timer-ring,
   .stopwatch-ring {
-    width: 215px;
-    height: 215px;
+    width: min(225px, 64vw);
   }
 
-  section {
-    gap: 22px;
+  .timer-ring p,
+  .stopwatch-ring p {
+    font-size: clamp(33px, 9vw, 41px);
+    letter-spacing: -1.8px;
+  }
+
+  .tab {
+    min-height: 41px;
+    padding: 9px 19px;
+
+    font-size: 12px;
+  }
+
+  section > div:has(> button) {
+    gap: 8px;
   }
 
   section button {
-    padding: 10px 15px;
+    min-height: 40px;
+    padding: 9px 14px;
+
+    font-size: 11px;
+  }
+
+  .timer-duration ~ div:last-child button {
+    min-width: 68px;
+    padding: 8px 11px;
   }
 }
 
-/* ========================================
-   14. REDUCED MOTION ACCESSIBILITY
-======================================== */
+/* =========================================
+   16. VERY SMALL SCREENS
+   ========================================= */
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+@media (max-width: 350px) {
+  #root > div {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  section {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .timer-ring,
+  .stopwatch-ring {
+    width: 205px;
+  }
+
+  section button {
+    padding-right: 11px;
+    padding-left: 11px;
+  }
+
+  .tab {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }

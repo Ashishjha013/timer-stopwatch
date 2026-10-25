@@ -1,4 +1,79 @@
-/* Global reset */
+/* =========================================
+   TIMER & STOPWATCH — GLOBAL FOUNDATION
+   ========================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* =========================================
+   1. DESIGN TOKENS
+   ========================================= */
+
+:root {
+  font-family:
+    "DM Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color-scheme: dark;
+  color: #f5f3ff;
+  background: #0b0b10;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Backgrounds */
+  --bg: #0b0b10;
+  --bg-elevated: #111119;
+  --surface: rgba(25, 25, 36, 0.78);
+  --surface-solid: #171720;
+  --surface-hover: #22222e;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.075);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Typography */
+  --text: #f5f3ff;
+  --text-secondary: #b5b2c5;
+  --muted: #88869a;
+
+  /* Accent colors */
+  --accent: #ff647c;
+  --accent-strong: #ff4969;
+  --accent-light: #ff9bab;
+  --accent-soft: rgba(255, 100, 124, 0.12);
+
+  /* Secondary accent */
+  --violet: #a78bfa;
+  --violet-soft: rgba(167, 139, 250, 0.12);
+
+  /* Effects */
+  --shadow-card: 0 24px 80px rgba(0, 0, 0, 0.3);
+  --shadow-accent: 0 0 30px rgba(255, 100, 124, 0.12);
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* Fonts */
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  /* Motion */
+  --transition-fast: 160ms ease;
+  --transition-normal: 240ms ease;
+}
+
+/* =========================================
+   2. RESET
+   ========================================= */
 
 *,
 *::before,
@@ -6,66 +81,124 @@
   box-sizing: border-box;
 }
 
-:root {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  color: #f4f2ff;
-  background: #0b0b10;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  font-optical-sizing: auto;
-  font-weight: 400;
-}
-
 html {
   min-width: 320px;
   min-height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+
+  line-height: 1.5;
 }
+
+/* React application container */
 
 #root {
-  min-height: 100vh;
   width: 100%;
+  min-height: 100vh;
 }
 
+/* =========================================
+   3. FORM ELEMENTS
+   ========================================= */
+
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
 button {
+  color: inherit;
   -webkit-tap-highlight-color: transparent;
 }
 
+button,
+input {
+  touch-action: manipulation;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+/* Remove default input appearance when appropriate */
+
+input,
+textarea {
+  accent-color: var(--accent);
+}
+
+/* =========================================
+   4. ACCESSIBILITY
+   ========================================= */
+
 ::selection {
   color: #ffffff;
-  background: #7454dc;
+  background: rgba(255, 100, 124, 0.38);
 }
 
 :focus-visible {
-  outline-color: #b5a2ff;
+  outline: 2px solid var(--accent-light);
+  outline-offset: 4px;
 }
+
+/* =========================================
+   5. SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--bg);
+  border-radius: var(--radius-full);
+  background: #343442;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55556a;
+}
+
+/* =========================================
+   6. REDUCED MOTION
+   ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
